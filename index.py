@@ -4,7 +4,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 # Ключи на месте
-TOKEN = "8646119174:AAH6YtktbUpHRy52qHnzx_TcRYMpUhRvnQE"
+TOKEN = "8563384832:AAGEJqPQHCTkYopc8ylANSHto1Kj62-6s5k"
 DIFY_API_KEY = "app-dP3PB2kM1fnSYrvl2IlTJ2Yv"
 
 # Словарь для хранения ID диалогов прямо в процессе работы
