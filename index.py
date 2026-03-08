@@ -60,4 +60,4 @@ def webhook():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return "Mira Status: Working", 200 
+    return "Mira Status: Working", 200  
