@@ -1,14 +1,12 @@
 import requests
+import os
 from flask import Flask, request
 
 app = Flask(__name__)
 
-# Ключи на месте
-TOKEN = "8646119174:AAH6YtktbUpHRy52qHnzx_TcRYMpUhRvnQE"
+TOKEN = "8563384832:AAGEJqPQHCTkYopc8ylANSHto1Kj62-6s5k"
 DIFY_API_KEY = "app-e0HLQWuFdB7i4OX15LzcQaAO"
 
-# Словарь для хранения ID диалогов прямо в процессе работы
-# (Работает, пока Vercel держит сессию активной)
 session_storage = {}
 
 @app.route('/api', methods=['POST'])
@@ -21,7 +19,6 @@ def webhook():
     text = update['message'].get('text')
     
     if text:
-        # Пытаемся достать ID существующего разговора для этого пользователя
         last_conv_id = session_storage.get(chat_id, "")
         
         try:
@@ -33,14 +30,13 @@ def webhook():
                     "query": text,
                     "response_mode": "blocking",
                     "user": str(chat_id),
-                    "conversation_id": last_conv_id  # ПЕРЕДАЕМ СТАРЫЙ ID
+                    "conversation_id": last_conv_id
                 },
                 timeout=25
             )
             
             result = response.json()
             
-            # ВАЖНО: Сохраняем ID, который выдал Dify, чтобы использовать в следующий раз
             new_conv_id = result.get('conversation_id')
             if new_conv_id:
                 session_storage[chat_id] = new_conv_id
@@ -60,4 +56,4 @@ def webhook():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return "Mira Status: Working", 200  
+    return "Mira Status: Working", 200
