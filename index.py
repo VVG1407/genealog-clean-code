@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Ключи на месте
 TOKEN = "8563384832:AAGEJqPQHCTkYopc8ylANSHto1Kj62-6s5k"
-DIFY_API_KEY = "app-dP3PB2kM1fnSYrvl2IlTJ2Yv"
+DIFY_API_KEY = "app-e0HLQWuFdB7i4OX15LzcQaAO"
 
 # Словарь для хранения ID диалогов прямо в процессе работы
 # (Работает, пока Vercel держит сессию активной)
